@@ -359,7 +359,10 @@ CREATE TABLE `viewRepairOrderInfo` (
 --
 DROP TABLE IF EXISTS `viewInvoicePaymentStatus`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`kkailay`@`localhost` SQL SECURITY DEFINER VIEW `viewInvoicePaymentStatus`  AS SELECT `i`.`invoiceID` AS `invoiceID`, `i`.`invoiceDate` AS `invoiceDate`, `i`.`totalAmount` AS `totalAmount`, `p`.`paymentDate` AS `paymentDate`, `p`.`amount` AS `amount`, `p`.`paymentMethod` AS `paymentMethod` FROM (`invoice` `i` left join `payment` `p` on(`i`.`invoiceID` = `p`.`invoiceID`)) ;
+CREATE VIEW viewInvoicePaymentStatus AS
+SELECT i.invoiceID, i.invoiceDate, i.totalAmount, p.paymentDate, p.amount, p.paymentMethod
+FROM invoice i
+LEFT JOIN payment p ON i.invoiceID = p.invoiceID;
 
 -- --------------------------------------------------------
 
@@ -368,7 +371,12 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`kkailay`@`localhost` SQL SECURITY DEFINER VI
 --
 DROP TABLE IF EXISTS `viewRepairOrderInfo`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`kkailay`@`localhost` SQL SECURITY DEFINER VIEW `viewRepairOrderInfo`  AS SELECT `ro`.`repairOrderID` AS `repairOrderID`, `ro`.`dateIn` AS `dateIn`, `ro`.`status` AS `status`, `c`.`custFirstName` AS `custFirstName`, `c`.`custLastName` AS `custLastName`, `v`.`vin` AS `vin`, `v`.`year` AS `year`, `e`.`empFirstName` AS `empFirstName`, `e`.`empLastName` AS `empLastName` FROM (((`repairOrder` `ro` join `vehicle` `v` on(`ro`.`vehicleID` = `v`.`vehicleID`)) join `customer` `c` on(`v`.`customerID` = `c`.`customerID`)) join `employee` `e` on(`ro`.`employeeID` = `e`.`employeeID`)) ;
+CREATE VIEW viewRepairOrderInfo AS
+SELECT ro.repairOrderID, ro.dateIn, ro.status, c.custFirstName, c.custLastName, v.vin, v.year, e.empFirstName, e.empLastName
+FROM repairOrder ro
+JOIN vehicle v ON ro.vehicleID = v.vehicleID
+JOIN customer c ON v.customerID = c.customerID
+JOIN employee e ON ro.employeeID = e.employeeID;
 
 --
 -- Indexes for dumped tables
@@ -609,3 +617,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
