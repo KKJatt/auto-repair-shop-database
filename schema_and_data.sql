@@ -201,36 +201,6 @@ INSERT INTO `partUsed` (`partUsedID`, `repairLineItemID`, `partID`, `quantityUse
 (4, 3, 2, 5, 8.49),
 (5, 3, 5, 1, 5.00);
 
---
--- Triggers `partUsed`
---
-DELIMITER $$
-CREATE TRIGGER `partUsed_after_insert` AFTER INSERT ON `partUsed` FOR EACH ROW BEGIN
-  UPDATE invoice
-  SET totalAmount =
-    (
-      SELECT SUM(rl.laborHours * rl.laborRate)
-      FROM repairLineItem rl
-      WHERE rl.repairOrderID =
-        (SELECT repairOrderID
-         FROM repairLineItem
-         WHERE repairLineItemID = NEW.repairLineItemID)
-    )
-    +
-    (
-      SELECT SUM(pu.quantityUsed * pu.unitPriceAtUse)
-      FROM partUsed pu
-      JOIN repairLineItem rl2 ON pu.repairLineItemID = rl2.repairLineItemID
-      WHERE rl2.repairOrderID =
-        (SELECT repairOrderID
-         FROM repairLineItem
-         WHERE repairLineItemID = NEW.repairLineItemID)
-    )
-  WHERE repairOrderID =
-    (SELECT repairOrderID
-     FROM repairLineItem
-     WHERE repairLineItemID = NEW.repairLineItemID)$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
