@@ -60,80 +60,60 @@ Handles customers, vehicles, employees, repair orders, parts inventory, invoicin
 **customer**
 | customerID | custFirstName | custLastName | phone | email |
 |---|---|---|---|---|
-| 1 | Aiden | Jones | 317-123-456 | ajones@gmail.com |
-| 2 | John | Doe | 317-987-6543 | jdoe@gmail.com |
+| 1 | Alex | Rivera | 317-555-0101 | alex.rivera@email.com |
+| 2 | Maya | Patel | 317-555-0102 | maya.patel@email.com |
+| 3 | Jordan | Lee | 317-555-0103 | jordan.lee@email.com |
 
 **vehicle**
 | vehicleID | customerID | modelID | vin | year |
 |---|---|---|---|---|
-| 1 | 1 | 1 | 4T1BF1FK7HU123456 | 2022 |
-| 2 | 2 | 2 | 1FTEW1E50JFA65432 | 2019 |
+| 1 | 1 | 1 | 1HGCM82633A004111 | 2018 |
+| 2 | 1 | 3 | 1FTFW1E50JFB12345 | 2020 |
+| 3 | 2 | 2 | 2T1BURHE0JC123456 | 2016 |
+| 4 | 3 | 4 | 3GCUKREC0JG123789 | 2019 |
 
 **make**
 | makeID | makeName |
 |---|---|
-| 1 | Honda |
-| 2 | Mercedes |
+| 1 | Toyota |
+| 2 | Ford |
+| 3 | Chevrolet |
 
 **model**
 | modelID | makeID | modelName |
 |---|---|---|
-| 1 | 1 | Accord |
-| 2 | 2 | G-Wagon |
+| 1 | 1 | Camry |
+| 2 | 1 | Corolla |
+| 3 | 2 | F-150 |
+| 4 | 3 | Silverado |
 
 **employee**
 | employeeID | empFirstName | empLastName | phone | email | jobID |
 |---|---|---|---|---|---|
-| 1 | John | Cena | 317-456-7613 | jcena@gmail.com | 1 |
-| 2 | Sidhu | Moosewala | 317-467-1278 | smoosewala@gmail.com | 2 |
+| 1 | Sidhu | Moosewala | 317-555-5911 | sidhu.moosewala@shop.com | 2 |
+| 2 | Taylor | Brooks | 317-555-1244 | taylor.brooks@shop.com | 2 |
+| 3 | Casey | Morgan | 317-555-1524 | casey.morgan@shop.com | 3 |
 
 **job**
 | jobID | jobTitle |
 |---|---|
-| 1 | Mechanic |
-| 2 | Service Manager |
+| 1 | Manager |
+| 2 | Mechanic |
+| 3 | Service Advisor |
 
 **serviceType**
 | serviceTypeID | serviceName | standardLaborHours |
 |---|---|---|
-| 1 | Oil Change | 1.0 |
-| 2 | Brake Pad Replacement | 2.5 |
-
-**repairOrder**
-| repairOrderID | vehicleID | employeeID | dateIn | status | notes |
-|---|---|---|---|---|---|
-| 1 | 2 | 2 | 2025-12-10 | open | Customer needed oil change |
-| 2 | 2 | 1 | 2025-12-11 | closed | Replaced front brake pads |
-
-**repairLineItem**
-| repairLineItemID | repairOrderID | serviceTypeID | laborHours | laborRate | lineNotes |
-|---|---|---|---|---|---|
-| 1 | 1 | 1 | 1.0 | 95 | Change oil + filter |
-| 2 | 1 | 2 | 2.5 | 95 | Also wanted to change rear brake pads |
-| 3 | 2 | 2 | 2.5 | 95 | Front brake pads replacement |
+| 1 | Oil Change | 1.00 |
+| 2 | Brake Pad Replace | 2.50 |
+| 3 | Tire Rotation | 0.75 |
+| 4 | Diagnostic | 1.00 |
 
 **part**
 | partID | partName | partDescription | unitPrice |
 |---|---|---|---|
-| 1 | Oil Filter | Standard Oil Filter | 19.99 |
-| 2 | Brake Pad Set | Ceramic Pads | 159.99 |
-
-**partUsed**
-| partUsedID | repairLineItemID | partID | quantityUsed | unitPriceAtUse |
-|---|---|---|---|---|
-| 1 | 1 | 1 | 1 | 19.99 |
-| 2 | 2 | 2 | 1 | 159.99 |
-| 3 | 3 | 2 | 1 | 159.99 |
-
-**invoice**
-| invoiceID | repairOrderID | invoiceDate | totalAmount |
-|---|---|---|---|
-| 1 | 1 | 2025-12-10 | 512.48 |
-| 2 | 2 | 2025-12-11 | 397.49 |
-
-**payment**
-| paymentID | invoiceID | paymentDate | amount | paymentMethod |
-|---|---|---|---|---|
-| 1 | 1 | 2025-12-10 | 512.48 | Card |
-| 2 | 2 | 2025-12-11 | 397.49 | Cash |
-
+| 1 | Oil Filter | Standard oil filter | 12.99 |
+| 2 | Engine Oil 5W-30 | 1 quart synthetic blend | 8.49 |
+| 3 | Brake Pads (Set) | Brake pad set | 79.99 |
+| 4 | Brake Cleaner | Aerosol brake cleaner | 6.99 |
+| 5 | Shop Supplies | Rags, gloves, small supplies fee | 5.00 |
