@@ -12,7 +12,7 @@ Handles customers, vehicles, employees, repair orders, parts inventory, invoicin
 - 13 normalized tables with primary and foreign key relationships
 - 2 views for common data lookups without repeated joins
 - 1 trigger that automatically recalculates the invoice total when a new part is added to a repair line item, keeping billing accurate without manual updates
-- 8 business-use queries for real shop operations
+- 9 business-use queries for real shop operations
 
 ## Business Rules
 - Each repair order must be linked to one vehicle
